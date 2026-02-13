@@ -1,4 +1,4 @@
-# I-Native OS (Early Development)
+# AI-Native OS (Early Development)
 
 **x86 Assembly, NASM, QEMU**
 
