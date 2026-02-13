@@ -1,162 +1,40 @@
-# 🧠 From ASM to OS — Assembly Language and Low-Level Systems Programming
+# I-Native OS (Early Development)
 
-Welcome to **From ASM to OS**, a hands-on course and project series focused on learning Assembly Language from the ground up — with the ultimate goal of building a custom operating system. This project guides you through the foundational computer architecture, core assembly syntax, bootloader creation, kernel entry, and even BIOS-level experiments in a safe virtualized environment.
+**x86 Assembly, NASM, QEMU**
 
----
+## Overview
 
-## 📚 Course Structure
+I-Native OS is a low-level systems programming project focused on x86 assembly development and bootloader design. The project explores fundamental bare-metal concepts through hands-on implementation in a virtualized environment.
 
-### 📘 Module 0: Pre-Course Foundations
-- What is a computer system?
-- CPU, RAM, Storage, Buses
-- Instruction Cycle (Fetch-Decode-Execute)
-- Binary, Hex, ASCII
-- ISA and Machine Code
+## Current Implementation
 
-🔧 **Activities**:
-- Simulations with [visualgo.net](https://visualgo.net)
-- Architecture basics quiz
+### Bootloader Development
+- **16-bit Real Mode Bootloader**: Basic bootloader capable of text output to screen via BIOS interrupt (`INT 0x10`)
+- **Disk I/O Operations**: Sector reading from disk via BIOS interrupt (`INT 0x13`) with basic error handling
+- **Protected Mode Transition**: Global Descriptor Table (GDT) configuration and transition logic from 16-bit real mode to 32-bit protected mode via long jumps
 
----
+### Assembly Programming Fundamentals
+- **Control Flow**: Conditional branching (`JMP`, conditional jumps) and loop constructs
+- **Memory Operations**: Basic register operations, memory addressing, and stack operations
+- **Arithmetic Operations**: Simple computational routines (addition, subtraction)
+- **String Processing**: Character and string manipulation using BIOS interrupts
 
-### 🔢 Module 1: Introduction to Assembly Language
-- What is Assembly? How it maps to Machine Code
-- CPU Architectures: x86, x86_64, ARM
-- Registers: General, Special
-- Addressing Modes
-- Memory Segments: Stack, Heap, Code, Data
+### Development Environment
+- **Assembler**: NASM (Netwide Assembler)
+- **Emulator**: QEMU for x86 system emulation
+- **Build Tools**: Shell scripts for automated compilation and execution
 
-🔧 **Activities**:
-- Set up NASM/YASM, QEMU/VirtualBox, FreeDOS
-- Write your first `.asm` (Hello World using `INT 21h`)
+## Project Structure
 
----
+- `src/`: Assembly source files (.asm)
+  - `hello.asm`: Basic bootloader with screen output
+  - `protected_mode.asm`: GDT setup and mode transition example
+  - `asm_disk_read.asm`: Disk sector reading implementation
+  - `calculator_assembly.asm`: Basic arithmetic operations
+  - Additional module and exercise files
+- `run_assembly.sh`: Build and execution script
+- `img/`: Output directory for compiled binaries
 
-### ⚙️ Module 2: Core Assembly Programming
-- Data types & directives: `db`, `dw`, `dd`, `resb`, etc.
-- Arithmetic and control flow: `JMP`, `CALL`, `RET`
-- Stack operations: `PUSH`, `POP`
-- String and memory operations: `MOVSB`, `REP`, etc.
+## Long-Term Goal
 
-🔧 **Activities**:
-- Basic calculator
-- String reverser
-- Binary-to-hex converter
-
----
-
-### 🖥️ Module 3: OS Interaction (DOS & Linux)
-- BIOS/DOS interrupts (`INT 10h`, `INT 21h`)
-- Linux syscalls in Assembly (`write`, `read`, etc.)
-- Mixing Assembly and C
-
-🔧 **Activities**:
-- Read and print file contents
-- Build a mini `cat` clone in Linux ASM
-
----
-
-### 🧰 Module 4: Debugging, Tools & Environments
-- Tools: `gdb`, `ndisasm`, `objdump`, `make`
-- File formats: MZ, PE, ELF
-- Linking and object generation
-
-🔧 **Activities**:
-- Debug a crash
-- Disassemble a binary
-
----
-
-### 🚀 Module 5: Bare Metal and Bootloaders
-- BIOS boot process, Real Mode (16-bit)
-- Writing 512-byte bootloaders
-- Disk structure and boot sectors
-- Entering Protected Mode
-
-🔧 **Activities**:
-- Bootloader that prints to screen
-- Load a binary file from disk
-- Create a two-stage loader
-
----
-
-### ⚙️ Module 6: Protected Mode and Kernel Entry
-- GDT and IDT setup
-- IRQs and interrupt handling
-- Writing a kernel entry in 32-bit
-- VGA text-mode programming
-
-🔧 **Activities**:
-- Build a VGA terminal driver
-- Timer/Keyboard interrupt handling
-
----
-
-### 🛠️ Module 7: Educational BIOS-Level Programming
-
-> ⚠️ **For educational use only — VM environments strongly recommended.**
-
-- BIOS, CMOS, and Real-Time Clock basics
-- Anatomy of a boot-sector infector (safe simulation)
-- MBR and BIOS interrupt handling
-
-🔧 **Activities**:
-- Simulate a harmless boot overwrite
-- Dummy BIOS virus inside QEMU
-
----
-
-### 🕹️ Module 8: Advanced Assembly Topics
-- Flat memory model
-- UEFI boot programming
-- SIMD (MMX, SSE, AVX) usage
-- Inline ASM in C
-- Intro to reverse engineering
-
-🔧 **Activities**:
-- Write optimized math ASM functions
-- Reverse engineer a compiled binary using Ghidra/Radare2
-
----
-
-## 🏁 Final Project Ideas
-Pick one of the following as your capstone:
-
-- 🔹 Build a simple command-line shell
-- 🔹 Create a game loader bootloader
-- 🔹 Write a dummy educational boot-sector virus (in VM)
-
----
-
-## 🧰 Tools Required
-
-- NASM or YASM assembler
-- QEMU / VirtualBox
-- FreeDOS or Linux VM (for testing)
-- `gdb`, `ndisasm`, `objdump`, `make`
-- Ghidra or Radare2 (for RE labs)
-
----
-
-## 🧑‍🏫 Course Philosophy
-
-- 🔍 Clear explanations with visuals
-- 💡 Commented code examples
-- 🧪 Challenge-based, hands-on tasks
-- 🧷 Safe, sandboxed experimentation (VM-only)
-
----
-
-## 📜 License
-
-This project is for educational use. Use safely, ethically, and legally.
-
----
-
-## 🌐 Contributing
-
-Contributions, suggestions, and improvements are welcome! Submit an issue or pull request if you'd like to help expand this project.
-
----
-
-Happy hacking! 🧠⚙️💻
+Architecting a system where an AI model functions as a core primitive to enable prompt-based kernel-level reconfigurations.
